@@ -1,0 +1,31 @@
+.footer {
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer_link {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    font-family: 'Cabin Sketch';
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+}
+
+.footer_link::before {
+    content: "[";
+    font-size: 2.5rem;
+    margin: 0 1rem;
+}
+
+.footer_link::after {
+    content: "]";
+    font-size: 2.5rem;
+    margin: 0 1rem;
+}

@@ -1,0 +1,12 @@
+.portfolio-list {
+    max-width: 1000px;
+    padding: 2rem;
+    margin: 2rem auto 4rem;
+    left: 0;
+    right: 0;
+
+}
+
+.portfolio-list img {
+    margin: 1rem 0;
+}
