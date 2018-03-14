@@ -4,7 +4,6 @@ import Img from 'gatsby-image'
 import './index.css'
 
 const SocialPage = ({ data }) => {
-    console.log(data)
     const items = data.allFile.edges.map(item => {
         return {
             sizes: item.node.childImageSharp.sizes,
@@ -15,7 +14,7 @@ const SocialPage = ({ data }) => {
     
     return (
         <div className="portfolio-list">
-            {items.map(picture => <Img className="portfolio-item" sizes={items.sizes} />)}
+            {items.map(item => <Img className="portfolio-item" sizes={item.sizes} />)}
         </div>
     )
 }
@@ -26,7 +25,7 @@ export const query = graphql`
 query SocialQuery {
     allFile(filter: {
         extension: {eq: "jpg"},
-        absolutePath: {regex: "/(socialmedia)/"}}) {
+        absolutePath: {regex: "/(social)/"}}) {
       edges {
         node {
           id
