@@ -11,11 +11,21 @@ function encode(data) {
 export default class Contact extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isSubmitted: false,
+            isError: false,
+            data: {},
+        };
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
+        let _state = this.state
+        this.setState({
+            data: {
+                [e.target.name]: e.target.value
+            }
+        })
+        //this.setState({ [e.target.name]: e.target.value });
     }
 
     handleSubmit = e => {
@@ -24,13 +34,32 @@ export default class Contact extends React.Component {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({ "form-name": "contact", ...this.state })
         })
-            .then(() => alert("Success!"))
-            .catch(error => alert(error));
-
+            .then(() => {
+                this.setState({ isSubmitted: true })
+            })
+            .catch(() => {
+                this.setState({ isError: true })
+            });
         e.preventDefault();
     };
 
-    render() {
+    renderSubmit() {
+        return (
+            <div className="message">
+                Your message has been sent. I will get back to you soon!
+        </div>
+        )
+    }
+
+    renderError() {
+        return (
+            <div className="message">
+                Something went wrong. Please try again!
+        </div>
+        )
+    }
+
+    renderForm() {
         return (
             <div>
                 <h1>Contact</h1>
@@ -71,5 +100,17 @@ export default class Contact extends React.Component {
                 </form>
             </div>
         );
+    }
+
+    render() {
+        return (
+            <div className="contact-page">
+                {this.state.isError ? this.renderError() :
+                    this.state.isSubmitted ? this.renderSubmit()
+                        : this.renderForm()
+                }
+            </div>
+        )
+
     }
 }
