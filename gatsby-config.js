@@ -34,7 +34,14 @@ module.exports = {
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `graphics`,
-      path: `${__dirname}/src/pages/photography`,
+      path: `${__dirname}/src/pages/graphics`,
+    },
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `media`,
+      path: `${__dirname}/src/media`,
     },
   },
   `gatsby-plugin-sharp`,

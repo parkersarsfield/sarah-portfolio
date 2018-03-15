@@ -1,0 +1,23 @@
+.about-page {
+    text-align: center;
+    max-width: 1000px;
+    margin: 4rem auto 0 auto;
+}
+
+.about-header {
+    font-size: 2rem;
+    margin: 2rem;
+}
+.about-profile-picture {
+    border-radius: 100%;
+}
+
+.about-intro {
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+.about-blurb {
+    max-width: 600px;
+    margin: auto;
+}

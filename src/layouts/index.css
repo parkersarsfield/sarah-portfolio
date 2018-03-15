@@ -627,6 +627,11 @@ pre tt:after {
   position: absolute;
   width: 100%;
   min-height: 100%;
-  background-color: #afeeee;
-  background: linear-gradient(to top, #afeeee 0%, #eee 70%);
+  background-color: #fff;
+
+  /* background: linear-gradient(to bottom, #afeeee 0%, #eee 400px); */
+}
+
+body {
+  font-family: 'Cabin Sketch';
 }

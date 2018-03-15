@@ -12,8 +12,12 @@ const PhotoPage = ({ data }) => {
     })
     
     return (
+        <div>
+        <div className="portfolio-title">photography</div>
+
         <div className="portfolio-list">
             {pictures.map(picture => <Img className="portfolio-item" sizes={picture.sizes} />)}
+        </div>
         </div>
     )
 }

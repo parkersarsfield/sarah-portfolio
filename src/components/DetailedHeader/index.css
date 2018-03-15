@@ -1,0 +1,52 @@
+.header.detailed{
+    height: 5rem;
+    
+}
+
+.header.detailed .header-signature {
+    top: 0;
+    margin: 0;
+    max-height: 100%;
+    max-width: max-content;
+}
+
+.header.detailed .link-group {
+    max-height: 100%;
+    margin: 0;
+    font-size: 1rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.header.detailed .link-button {
+    flex: 0;
+    min-width: 8rem;
+    margin: 1rem;
+
+}
+
+.header.detailed .link-text {
+    font-size: 1rem;
+    max-width: fit-content;
+    flex: 0;
+    transition: font-size .1s;
+}
+
+.header.detailed .link-button:hover .link-text{
+    font-size: 1.1rem;
+    background: transparent;
+}
+
+.header.detailed .link-text::after {
+    content: none;
+}
+
+.header.detailed .link-text::before {
+    content: none;
+
+}

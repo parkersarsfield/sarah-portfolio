@@ -10,11 +10,13 @@ const SocialPage = ({ data }) => {
             name: item.node.name
         }
     })
-    console.log(items)
     
     return (
+        <div>
+        <div className="portfolio-title">social media</div>
         <div className="portfolio-list">
             {items.map(item => <Img className="portfolio-item" sizes={item.sizes} />)}
+        </div>
         </div>
     )
 }
