@@ -19,20 +19,18 @@ export default class Contact extends React.Component {
     }
 
     handleChange = (e) => {
-        let _state = this.state
+        let data = this.state.data;
+        data[e.target.name] = e.target.value;
         this.setState({
-            data: {
-                [e.target.name]: e.target.value
-            }
+            data,
         })
-        //this.setState({ [e.target.name]: e.target.value });
     }
 
     handleSubmit = e => {
         fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "contact", ...this.state })
+            body: encode({ "form-name": "contact", ...this.state.data })
         })
             .then(() => {
                 this.setState({ isSubmitted: true })
