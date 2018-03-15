@@ -12,7 +12,7 @@ fontawesome.library.add(brands)
 const instagramUrl = 'https://www.instagram.com/saraheborton/'
 const Footer = () => {
     return (
-        <div className="footer">
+        <div className="footer-container">
         <div className="footer">
             <Link className="footer_link" to='/contact'>contact</Link>
             <a className="footer_link" href={instagramUrl}><FontAwesomeIcon icon={["fab", "instagram"]} /></a>

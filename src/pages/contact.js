@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
-
+import './contact.css'
 function encode(data) {
     return Object.keys(data)
         .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -59,8 +59,8 @@ export default class Contact extends React.Component {
 
     renderForm() {
         return (
-            <div>
-                <h1>Contact</h1>
+            <div className="contact-page">
+                <div className="contact-header">contact me</div>
                 <form
                     name="contact"
                     method="post"
@@ -68,32 +68,34 @@ export default class Contact extends React.Component {
                     data-netlify="true"
                     data-netlify-honeypot="bot-field"
                     onSubmit={this.handleSubmit}
+                    className="contact-form"
                 >
                     <p hidden>
                         <label>
                             Don’t fill this out: <input name="bot-field" />
                         </label>
                     </p>
-                    <p>
-                        <label>
+                    
+                    <span className="form-info">
+                        <label className="form-label upper">
                             Your name:<br />
                             <input type="text" name="name" onChange={this.handleChange} />
                         </label>
-                    </p>
-                    <p>
-                        <label>
+                    
+                    
+                        <label className="form-label upper">
                             Your email:<br />
                             <input type="email" name="email" onChange={this.handleChange} />
                         </label>
-                    </p>
-                    <p>
+                    </span>
+                    <div className="form-message">
                         <label>
                             Message:<br />
                             <textarea name="message" onChange={this.handleChange} />
                         </label>
-                    </p>
+                    </div>
                     <p>
-                        <button type="submit">Send</button>
+                        <button className="form-button" type="submit">Send</button>
                     </p>
                 </form>
             </div>
