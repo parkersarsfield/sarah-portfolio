@@ -5,6 +5,11 @@
     height: 100%;
     position: fixed;
     top: 0;
+    transition: opacity 1s;
+}
+
+.dropdown-mask-hidden {
+    opacity: 0;
 }
 
 .dropdown-links {
@@ -15,6 +20,14 @@
     font-size: 2rem;
     position: fixed;
     top: 0;
+    max-height: 100%;
+    transition: max-height 1s;
+    overflow: hidden;
+}
+
+.dropdown-links-hidden {
+    max-height: 0;
+    display: hidden;
 }
 
 .dropdown-link {

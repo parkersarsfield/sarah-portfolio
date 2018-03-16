@@ -4,10 +4,13 @@ import Link from 'gatsby-link'
 import './index.css'
 
 const DropdownLinks = ({isVisible, close}) => {
-    return isVisible ? (
+    const maskClass = isVisible ? `dropdown-mask` : `dropdown-mask-hidden`
+    const linksClass = isVisible ? `dropdown-links` : `dropdown-links-hidden`
+
+    return (
         <div>
-            <div className="dropdown-mask" onClick={close}/>
-            <div className="dropdown-links">
+            <div className={maskClass} onClick={close}/>
+            <div className={linksClass}>
                 <Link className="dropdown-link" onClick={close} to="/painting">painting</Link>
                 <Link className="dropdown-link" onClick={close} to="/graphics">graphics</Link>
                 <Link className="dropdown-link" onClick={close} to="/socialmedia">social media</Link>
@@ -16,7 +19,7 @@ const DropdownLinks = ({isVisible, close}) => {
                 <Link className="dropdown-link" onClick={close} to="/about">about</Link>
             </div>
         </div>
-    ) : null
+    )
 }
 
 export default DropdownLinks
