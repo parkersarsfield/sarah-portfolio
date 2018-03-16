@@ -1,4 +1,6 @@
 import React, {Fragment} from 'react'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/fontawesome-free-solid'
 
 import Link from 'gatsby-link'
 import logo from '../../media/sign.svg'
@@ -12,7 +14,7 @@ const LinkButton = ({ text }) => {
     )
 }
 
-const PageLinks = ({ links, hasLogo }) => {
+const PageLinks = ({ links, hasLogo, openMenu }) => {
     return (
         <div className="link-group">
             {links.map((link, i) => {
@@ -27,6 +29,8 @@ const PageLinks = ({ links, hasLogo }) => {
                     return <LinkButton text={link} />
                 }
             })}
+            <FontAwesomeIcon className="menu-button" icon={faBars} onClick={openMenu}/>
+
         </div>
     )
 }

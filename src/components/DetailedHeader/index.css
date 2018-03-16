@@ -1,6 +1,5 @@
 .header.detailed{
     height: 5rem;
-    
 }
 
 .header.detailed .header-signature {
@@ -50,3 +49,35 @@
     content: none;
 
 }
+
+.menu-button {
+    display: none;
+}
+
+@media (max-width: 1000px) { 
+    .header.detailed .link-button {
+        display: none;
+    }
+
+    .header.detailed .header-signature {
+        max-height: 100%;
+        flex: 1;
+    }
+
+    .header.detailed {
+        padding: 1rem;
+        height: unset;
+    }
+
+    .header.detailed .link-group {
+        justify-content: left;
+        flex: 1;
+    }
+
+    .header.detailed .menu-button {
+        display: block;
+        height: 100%;
+        font-size: 2rem;
+        margin: 0 0 0 auto;
+    }
+ }

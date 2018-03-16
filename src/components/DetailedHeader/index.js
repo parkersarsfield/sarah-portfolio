@@ -6,11 +6,10 @@ import PageLinks from '../PageLinks'
 import './index.css'
 const links = ['painting', 'graphics', 'social media', 'photography']
 
-const DetailedHeader = () => {
+const DetailedHeader = ({ openMenu }) => {
     return (
         <div className="header detailed">
-
-            <PageLinks links={links} hasLogo />
+            <PageLinks links={links} hasLogo openMenu={openMenu} />
         </div>
     )
 }

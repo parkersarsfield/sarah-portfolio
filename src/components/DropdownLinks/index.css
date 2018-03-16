@@ -1,0 +1,25 @@
+.dropdown-mask {
+    background-color: #333;
+    opacity: .6;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.dropdown-links {
+    background: #f1f1f1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    position: fixed;
+    top: 0;
+}
+
+.dropdown-link {
+    margin: 1rem;
+    border-bottom: 1px solid #333;
+    text-decoration: none;
+    color: #333;
+}
