@@ -104,4 +104,8 @@
     div.contact-page {
         margin: 0;
     }
+
+    .form-info .form-label.upper {
+        margin: 0;
+    }
  }

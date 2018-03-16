@@ -628,7 +628,7 @@ pre tt:after {
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-  padding: 0 0 4rem 0; /*match this to footer height */
+  padding: 0 0 6rem 0; /*match this to at least footer height */
 
   /* background: linear-gradient(to bottom, #afeeee 0%, #eee 400px); */
 }

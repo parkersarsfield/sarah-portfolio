@@ -1,5 +1,6 @@
 .footer {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .footer_link {
@@ -13,7 +14,7 @@
     margin: 0 0;
     flex: 1;
 }
-
+/* 
 .footer_link::before {
     content: "[";
     font-size: 1.5rem;
@@ -28,20 +29,20 @@
     margin: 0 1rem;
     transition: font-size 2s;
     transition: margin .25s;
-}
+} */
 
 .legal {
     font-size: .75rem;
 }
 
 
-.footer_link:hover::after {
+/* .footer_link:hover::after {
     margin: 0 .2rem;
 }
 
 .footer_link:hover::before {
     margin: 0 .2rem;
-}
+} */
 
 .footer-container {
     bottom: 0;
