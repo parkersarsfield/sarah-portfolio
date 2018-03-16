@@ -80,4 +80,28 @@
         font-size: 2rem;
         margin: 0 0 0 auto;
     }
+
+    .header-signature {
+        margin: 4rem 0 0 0 ;
+    }
+
+    div.portfolio-title {
+        margin: 0;
+    }
+
+    div.about-page {
+        margin: 0;
+    }
+
+    div.about-header {
+        margin-top: 0;
+    }
+    
+    div.contact-header {
+        margin-top: 0;
+    }
+
+    div.contact-page {
+        margin: 0;
+    }
  }

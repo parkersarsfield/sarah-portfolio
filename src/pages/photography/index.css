@@ -1,7 +1,7 @@
 .portfolio-list {
     max-width: 1000px;
     padding: 2rem;
-    margin: 2rem auto 4rem;
+    margin: 0 auto;
     left: 0;
     right: 0;
     text-align: center;
@@ -10,6 +10,7 @@
 .portfolio-item:first-of-type {
     margin-top: 0;
 }
+
 
 .portfolio-item {
     margin: 5rem 0;
