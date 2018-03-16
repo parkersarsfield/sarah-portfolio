@@ -27,7 +27,7 @@
 
 .dropdown-links-hidden {
     max-height: 0;
-    display: hidden;
+    overflow: hidden;
 }
 
 .dropdown-link {
