@@ -29,7 +29,7 @@ class TemplateWrapper extends React.Component {
 
 
   render() {
-    if (location.pathname === '/') {
+    if (this.props.location.pathname === '/') {
       return (
         <div className="wrapper">
           <Helmet
