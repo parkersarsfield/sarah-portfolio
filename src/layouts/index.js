@@ -29,6 +29,8 @@ class TemplateWrapper extends React.Component {
 
 
   render() {
+    const sizes = this.props.data.allFile.edges[0].node.childImageSharp.sizes;
+
     if (this.props.location.pathname === '/') {
       return (
         <div className="wrapper">
@@ -39,7 +41,7 @@ class TemplateWrapper extends React.Component {
               { name: 'keywords', content: 'art, painting, social media, design' },
             ]}
           />
-          <Header />
+          <Header signatureSizes={sizes}/>
           {this.props.children()}
           <Footer />
         </div>
@@ -56,7 +58,7 @@ class TemplateWrapper extends React.Component {
               { name: 'keywords', content: 'art, painting, social media, design' },
             ]}
           />
-          <DetailedHeader openMenu={this.openDropdown} closeMenu={this.closeDropdown}/>
+          <DetailedHeader openMenu={this.openDropdown} closeMenu={this.closeDropdown} signatureSizes={sizes}/>
           {this.props.children()}
           <Footer />
           <DropdownLinks isVisible={this.state.isDropdownOpen} open={this.openDropdown} close={this.closeDropdown}/>
@@ -72,3 +74,19 @@ TemplateWrapper.propTypes = {
 }
 
 export default TemplateWrapper
+
+export const query = graphql`
+query HeaderQuery {
+    allFile (filter: {relativePath: {eq :"sign.png"}}){
+      edges {
+        node {
+          childImageSharp {
+            sizes(maxHeight: 300) {
+                ...GatsbyImageSharpSizes
+            }
+          }
+        }
+      }
+    }
+  }
+`  

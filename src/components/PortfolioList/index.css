@@ -1,0 +1,25 @@
+.portfolio-list {
+    max-width: 1000px;
+    padding: 2rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.portfolio-item {
+    margin: 4rem 0;
+}
+
+.portfolio-item-last {
+    margin: 0;
+}
+
+.portfolio-title {
+    color: #333;
+    text-align: center;
+    margin: 4rem 0 0 0;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+}

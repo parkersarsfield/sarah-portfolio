@@ -1,7 +1,6 @@
 import React from 'react'
-import Img from 'gatsby-image'
+import PortfolioList from '../../components/PortfolioList'
 
-import './index.css'
 
 const SocialPage = ({ data }) => {
     const items = data.allFile.edges.map(item => {
@@ -12,12 +11,7 @@ const SocialPage = ({ data }) => {
     })
     
     return (
-        <div>
-        <div className="portfolio-title">social media</div>
-        <div className="portfolio-list">
-            {items.map(item => <Img className="portfolio-item" sizes={item.sizes} />)}
-        </div>
-        </div>
+        <PortfolioList items={items} title="social media" />
     )
 }
 

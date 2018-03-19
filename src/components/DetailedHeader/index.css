@@ -54,6 +54,10 @@
     display: none;
 }
 
+.signature-container {
+    min-width: 10rem;
+}
+
 @media (max-width: 1000px) { 
     .header.detailed .link-button {
         display: none;
@@ -65,8 +69,7 @@
     }
 
     .header.detailed {
-        padding: 1rem;
-        height: unset;
+        padding: 2rem;
     }
 
     .header.detailed .link-group {
@@ -82,7 +85,15 @@
     }
 
     .header-signature {
-        margin: 4rem 0 0 0 ;
+        margin: 4rem auto 0 auto ;
+    }
+
+    .signature-container {
+        margin: 1rem 0 0 0;
+    }
+
+    .signature-container img {
+        margin: 0;
     }
 
     div.portfolio-title {
@@ -101,10 +112,10 @@
         margin-top: 0;
     }
 
-    div.contact-page {
-        margin: 0;
+    .form-info {
+        flex-direction: column;
     }
-
+    
     .form-info .form-label.upper {
         margin: 0;
     }

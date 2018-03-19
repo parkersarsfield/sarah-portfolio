@@ -3,7 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/fontawesome-free-solid'
 
 import Link from 'gatsby-link'
-import logo from '../../media/sign.svg'
+import Img from 'gatsby-image'
 import './index.css'
 
 const LinkButton = ({ text }) => {
@@ -14,14 +14,14 @@ const LinkButton = ({ text }) => {
     )
 }
 
-const PageLinks = ({ links, hasLogo, openMenu }) => {
+const PageLinks = ({ links, hasLogo, openMenu, signatureSizes }) => {
     return (
         <div className="link-group">
             {links.map((link, i) => {
                 if (i === 2 && hasLogo) {
                     return [
-                            <Link to="/">
-                                <img src={logo} className="header-signature" draggable="false" />
+                            <Link className="signature-container" to="/">
+                                <Img sizes={signatureSizes} />
                             </Link>,
                             <LinkButton text={link} />
                     ]

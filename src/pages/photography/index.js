@@ -1,10 +1,8 @@
 import React from 'react'
-import Img from 'gatsby-image'
-
-import './index.css'
+import PortfolioList from '../../components/PortfolioList'
 
 const PhotoPage = ({ data }) => {
-    const pictures = data.allFile.edges.map(pic => {
+    const items = data.allFile.edges.map(pic => {
         return {
             sizes: pic.node.childImageSharp.sizes,
             name: pic.node.name
@@ -12,13 +10,7 @@ const PhotoPage = ({ data }) => {
     })
     
     return (
-        <div>
-        <div className="portfolio-title">photography</div>
-
-        <div className="portfolio-list">
-            {pictures.map(picture => <Img className="portfolio-item" sizes={picture.sizes} />)}
-        </div>
-        </div>
+        <PortfolioList items={items} title="photography" />
     )
 }
 
