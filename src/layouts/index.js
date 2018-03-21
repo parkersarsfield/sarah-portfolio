@@ -81,7 +81,7 @@ query HeaderQuery {
       edges {
         node {
           childImageSharp {
-            sizes(maxHeight: 300) {
+            sizes(maxWidth: 500) {
                 ...GatsbyImageSharpSizes
             }
           }
