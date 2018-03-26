@@ -33,8 +33,8 @@ module.exports = {
   {
     resolve: `gatsby-source-filesystem`,
     options: {
-      name: `graphics`,
-      path: `${__dirname}/src/pages/graphics`,
+      name: `poetry`,
+      path: `${__dirname}/src/pages/poetry`,
     },
   },
   {

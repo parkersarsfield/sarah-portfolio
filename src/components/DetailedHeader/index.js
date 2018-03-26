@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import PageLinks from '../PageLinks'
 
 import './index.css'
-const links = ['painting', 'graphics', 'social media', 'photography']
+const links = ['painting', 'poetry', 'social media', 'photography']
 
 const DetailedHeader = ({ openMenu, signatureSizes }) => {
     return (

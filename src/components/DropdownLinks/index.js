@@ -12,7 +12,7 @@ const DropdownLinks = ({isVisible, close}) => {
             <div className={maskClass} onClick={close}/>
             <div className={linksClass}>
                 <Link className="dropdown-link" onClick={close} to="/painting">painting</Link>
-                <Link className="dropdown-link" onClick={close} to="/graphics">graphics</Link>
+                <Link className="dropdown-link" onClick={close} to="/poetry">poetry</Link>
                 <Link className="dropdown-link" onClick={close} to="/socialmedia">social media</Link>
                 <Link className="dropdown-link" onClick={close} to="/photography">photography</Link>
                 <Link className="dropdown-link" onClick={close} to="/contact">contact</Link>

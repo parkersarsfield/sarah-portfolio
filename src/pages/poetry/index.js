@@ -3,7 +3,7 @@ import Img from 'gatsby-image'
 
 import NoContent from '../../components/NoContent'
 
-const GraphicsPage = ({ data }) => {
+const PoetryPage = ({ data }) => {
 
     const items = data.allFile === null ? [] : data.allFile.edges.map(item => {
         return {
@@ -14,26 +14,26 @@ const GraphicsPage = ({ data }) => {
 
     return (
         <div>
-            <div className="portfolio-title">graphics</div>
-            <div className="portfolio-list">
+            <div className="portfolio-title">poetry</div>
+            <div className="portfolio-list poetry">
                 {items.length === 0 ? <NoContent /> : items.map(item => <Img className="portfolio-item" sizes={item.sizes} />)}
             </div>
         </div>
     )
 }
 
-export default GraphicsPage
+export default PoetryPage
 
 export const query = graphql`
-query GraphicsQuery {
+query PoetryQuery {
     allFile(filter: {
-        extension: {eq: "jpg"},
-        absolutePath: {regex: "/(graphics)/"}}) {
+        extension: {eq: "png"},
+        absolutePath: {regex: "/(poetry)/"}}) {
       edges {
         node {
           id
           childImageSharp {
-            sizes (maxWidth: 640) {
+            sizes (maxWidth: 600) {
                 ...GatsbyImageSharpSizes
             }
           }

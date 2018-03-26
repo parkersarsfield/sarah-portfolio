@@ -4,7 +4,7 @@ import Link from 'gatsby-link';
 import PageLinks from '../components/PageLinks'
 import Footer from '../components/Footer'
 
-const links = ['painting', 'graphics', 'social media', 'photography']
+const links = ['painting', 'poetry', 'social media', 'photography']
 
 const IndexPage = () => (
   <div>
