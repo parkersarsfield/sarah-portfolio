@@ -28,6 +28,7 @@ class TemplateWrapper extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const sizes =
       this.props.data.allFile.edges[0].node.childImageSharp.sizes || null
 
