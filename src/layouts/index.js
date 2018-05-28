@@ -30,7 +30,8 @@ class TemplateWrapper extends React.Component {
   render() {
     console.log(this.props)
     const sizes =
-      this.props.data.allFile.edges[0].node.childImageSharp.sizes || null
+      this.props.data.allFile.edges[0].node.childImageSharp.sizes ||
+      this.props.data.allJpg.edges[0].node.childImageSharp.sizes
 
     if (this.props.location.pathname === '/') {
       return (
