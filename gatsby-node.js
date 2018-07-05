@@ -18,54 +18,150 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
       value: slug
     })
   }
+
+  if (node.id.includes('/painting/') && isImage(node)) {
+    const slug = createFilePath({ node, getNode, basePath: 'painting' })
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug
+    })
+  }
 }
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
 
-  return new Promise((resolve, reject) => {
-    resolve(
-      graphql(
-        `
-          {
-            allFile(filter: { absolutePath: { regex: "/(socialmedia)/" } }) {
-              edges {
-                node {
-                  fields {
-                    slug
-                  }
-                  id
+  const createCategoryPages = categoryType => {
+    graphql(
+      `
+        {
+          allFile(filter: { absolutePath: { regex: "/(${categoryType})/" } }) {
+            edges {
+              node {
+                fields {
+                  slug
                 }
+                id
               }
             }
           }
-        `
-      ).then(result => {
-        if (result.errors) {
-          reject(result.errors)
         }
+      `
+    ).then(result => {
+      if (result.errors) {
+        reject(result.errors)
+      }
 
-        const socialPosts = result.data.allFile.edges
-          .filter(edge => {
-            return edge.node.fields !== null
-          })
-          .forEach(({ node }) => {
-            const category = '/socialmedia'
-            const slugWithCategory = category + node.fields.slug
+      const socialPosts = result.data.allFile.edges
+        .filter(edge => {
+          return edge.node.fields !== null
+        })
+        .forEach(({ node }) => {
+          const category = '/' + categoryType
+          const slugWithCategory = category + node.fields.slug
 
-            createPage({
-              path: slugWithCategory,
-              component: path.resolve(
-                `src/templates/single-portfolio-template.js`
-              ),
-              context: {
-                slug: node.fields.slug,
-                slugWithCategory,
-                category
-              }
-            })
+          createPage({
+            path: slugWithCategory,
+            component: path.resolve(
+              `src/templates/single-portfolio-template.js`
+            ),
+            context: {
+              slug: node.fields.slug,
+              slugWithCategory,
+              category
+            }
           })
-      })
+        })
+    })
+  }
+
+  return new Promise((resolve, reject) => {
+    resolve(
+      // graphql(
+      //   `
+      //     {
+      //       allFile(filter: { absolutePath: { regex: "/(socialmedia)/" } }) {
+      //         edges {
+      //           node {
+      //             fields {
+      //               slug
+      //             }
+      //             id
+      //           }
+      //         }
+      //       }
+      //     }
+      //   `
+      // ).then(result => {
+      //   if (result.errors) {
+      //     reject(result.errors)
+      //   }
+
+      //   const socialPosts = result.data.allFile.edges
+      //     .filter(edge => {
+      //       return edge.node.fields !== null
+      //     })
+      //     .forEach(({ node }) => {
+      //       const category = '/socialmedia'
+      //       const slugWithCategory = category + node.fields.slug
+
+      //       createPage({
+      //         path: slugWithCategory,
+      //         component: path.resolve(
+      //           `src/templates/single-portfolio-template.js`
+      //         ),
+      //         context: {
+      //           slug: node.fields.slug,
+      //           slugWithCategory,
+      //           category
+      //         }
+      //       })
+      //     })
+      // }),
+      // graphql(
+      //   `
+      //     {
+      //       allFile(filter: { absolutePath: { regex: "/(painting)/" } }) {
+      //         edges {
+      //           node {
+      //             fields {
+      //               slug
+      //             }
+      //             id
+      //           }
+      //         }
+      //       }
+      //     }
+      //   `
+      // ).then(result => {
+      //   if (result.errors) {
+      //     reject(result.errors)
+      //   }
+
+      //   const socialPosts = result.data.allFile.edges
+      //     .filter(edge => {
+      //       return edge.node.fields !== null
+      //     })
+      //     .forEach(({ node }) => {
+      //       const category = '/painting'
+      //       const slugWithCategory = category + node.fields.slug
+
+      //       createPage({
+      //         path: slugWithCategory,
+      //         component: path.resolve(
+      //           `src/templates/single-portfolio-template.js`
+      //         ),
+      //         context: {
+      //           slug: node.fields.slug,
+      //           slugWithCategory,
+      //           category
+      //         }
+      //       })
+      //     })
+      // })
+      createCategoryPages('painting'),
+      createCategoryPages('socialmedia')
     )
   })
 }
