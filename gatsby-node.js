@@ -1,66 +1,167 @@
-// const _ = require(`lodash`);
-// const Promise = require(`bluebird`);
-// const path = require(`path`);
-// const slug = require(`slug`);
-// const slash = require(`slash`);
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
-// exports.createPages = ({ graphql, boundActionCreators }) => {
-//   const { createPage } = boundActionCreators;
+const isImage = node => {
+  if (node.extension === 'png') return true
+  if (node.extension === 'jpg') return true
+  return false
+}
 
-//   return new Promise((resolve, reject) => {
-//     // The “graphql” function allows us to run arbitrary
-//     // queries against this Gatsbygram's graphql schema. Think of
-//     // it like Gatsbygram has a built-in database constructed
-//     // from static data that you can run queries against.
-//     //
-//     // Post is a data node type derived from data/posts.json
-//     // which is created when scrapping Instagram. “allPostsJson”
-//     // is a "connection" (a GraphQL convention for accessing
-//     // a list of nodes) gives us an easy way to query all
-//     // Post nodes.
-//     resolve(
-//       graphql(
-//         `
-//           {
-//             allPostsJson(limit: 1000) {
-//               edges {
-//                 node {
-//                   id
-//                 }
-//               }
-//             }
-//           }
-//         `
-//       ).then(result => {
-//         if (result.errors) {
-//           reject(new Error(result.errors));
-//         }
+exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+  const { createNodeField } = boundActionCreators
 
-//         // Create image post pages.
-//         const postTemplate = path.resolve(`src/templates/post-page.js`);
-//         // We want to create a detailed page for each
-//         // Instagram post. Since the scrapped Instagram data
-//         // already includes an ID field, we just use that for
-//         // each page's path.
-//         _.each(result.data.allPostsJson.edges, edge => {
-//           // Gatsby uses Redux to manage its internal state.
-//           // Plugins and sites can use functions like "createPage"
-//           // to interact with Gatsby.
-//           createPage({
-//             // Each page is required to have a `path` as well
-//             // as a template component. The `context` is
-//             // optional but is often necessary so the template
-//             // can query data specific to each page.
-//             path: `/${slug(edge.node.id)}/`,
-//             component: slash(postTemplate),
-//             context: {
-//               id: edge.node.id,
-//             },
-//           });
-//         });
+  if (node.id.includes('/socialmedia/') && isImage(node)) {
+    const slug = createFilePath({ node, getNode, basePath: 'socialmedia' })
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug
+    })
+  }
 
-//         return;
-//       })
-//     );
-//   });
-// };
+  if (node.id.includes('/painting/') && isImage(node)) {
+    const slug = createFilePath({ node, getNode, basePath: 'painting' })
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug
+    })
+  }
+}
+
+exports.createPages = ({ boundActionCreators, graphql }) => {
+  const { createPage } = boundActionCreators
+
+  const createCategoryPages = categoryType => {
+    graphql(
+      `
+        {
+          allFile(filter: { absolutePath: { regex: "/(${categoryType})/" } }) {
+            edges {
+              node {
+                fields {
+                  slug
+                }
+                id
+              }
+            }
+          }
+        }
+      `
+    ).then(result => {
+      if (result.errors) {
+        reject(result.errors)
+      }
+
+      const socialPosts = result.data.allFile.edges
+        .filter(edge => {
+          return edge.node.fields !== null
+        })
+        .forEach(({ node }) => {
+          const category = '/' + categoryType
+          const slugWithCategory = category + node.fields.slug
+
+          createPage({
+            path: slugWithCategory,
+            component: path.resolve(
+              `src/templates/single-portfolio-template.js`
+            ),
+            context: {
+              slug: node.fields.slug,
+              slugWithCategory,
+              category
+            }
+          })
+        })
+    })
+  }
+
+  return new Promise((resolve, reject) => {
+    resolve(
+      // graphql(
+      //   `
+      //     {
+      //       allFile(filter: { absolutePath: { regex: "/(socialmedia)/" } }) {
+      //         edges {
+      //           node {
+      //             fields {
+      //               slug
+      //             }
+      //             id
+      //           }
+      //         }
+      //       }
+      //     }
+      //   `
+      // ).then(result => {
+      //   if (result.errors) {
+      //     reject(result.errors)
+      //   }
+
+      //   const socialPosts = result.data.allFile.edges
+      //     .filter(edge => {
+      //       return edge.node.fields !== null
+      //     })
+      //     .forEach(({ node }) => {
+      //       const category = '/socialmedia'
+      //       const slugWithCategory = category + node.fields.slug
+
+      //       createPage({
+      //         path: slugWithCategory,
+      //         component: path.resolve(
+      //           `src/templates/single-portfolio-template.js`
+      //         ),
+      //         context: {
+      //           slug: node.fields.slug,
+      //           slugWithCategory,
+      //           category
+      //         }
+      //       })
+      //     })
+      // }),
+      // graphql(
+      //   `
+      //     {
+      //       allFile(filter: { absolutePath: { regex: "/(painting)/" } }) {
+      //         edges {
+      //           node {
+      //             fields {
+      //               slug
+      //             }
+      //             id
+      //           }
+      //         }
+      //       }
+      //     }
+      //   `
+      // ).then(result => {
+      //   if (result.errors) {
+      //     reject(result.errors)
+      //   }
+
+      //   const socialPosts = result.data.allFile.edges
+      //     .filter(edge => {
+      //       return edge.node.fields !== null
+      //     })
+      //     .forEach(({ node }) => {
+      //       const category = '/painting'
+      //       const slugWithCategory = category + node.fields.slug
+
+      //       createPage({
+      //         path: slugWithCategory,
+      //         component: path.resolve(
+      //           `src/templates/single-portfolio-template.js`
+      //         ),
+      //         context: {
+      //           slug: node.fields.slug,
+      //           slugWithCategory,
+      //           category
+      //         }
+      //       })
+      //     })
+      // })
+      createCategoryPages('painting'),
+      createCategoryPages('socialmedia')
+    )
+  })
+}
